@@ -6,12 +6,19 @@ using System;
 
 public class EnemyBehavious : MonoBehaviour, IDamagable
 {
-    public GameObject player;
+    public ThirdPersonController player;
     public NavMeshAgent enemy;
 
     public float enemyHitPoints = 100f;
 
     public float damagePlayer = 10f;
+
+    WaveManager waveManager;
+
+    private void Start()
+    {
+        waveManager = FindObjectOfType<WaveManager>();
+    }
 
     void Update()
     {
@@ -31,6 +38,7 @@ public class EnemyBehavious : MonoBehaviour, IDamagable
         enemyHitPoints -= damage;
         if(enemyHitPoints <= 0)
         {
+            waveManager.EnemyDied();
             Destroy(gameObject);
         }
     }
@@ -39,7 +47,8 @@ public class EnemyBehavious : MonoBehaviour, IDamagable
     {
         if(other.tag == "Player")
         {
-            FindObjectOfType<ThirdPersonController>().TakeLife(damagePlayer);
+            player.TakeLife(damagePlayer);
+            //FindObjectOfType<ThirdPersonController>().TakeLife(damagePlayer);
         }
     }
 }
