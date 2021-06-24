@@ -17,7 +17,7 @@ public class BulletBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Movement();
+        //Movement();
     }
 
     private void Movement()

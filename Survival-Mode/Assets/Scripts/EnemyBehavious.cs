@@ -11,11 +11,7 @@ public class EnemyBehavious : MonoBehaviour, IDamagable
 
     public float enemyHitPoints = 100f;
 
-    void Start()
-    {
-        
-    }
-
+    public float damagePlayer = 10f;
 
     void Update()
     {
@@ -39,5 +35,11 @@ public class EnemyBehavious : MonoBehaviour, IDamagable
         }
     }
 
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            FindObjectOfType<ThirdPersonController>().TakeLife(damagePlayer);
+        }
+    }
 }

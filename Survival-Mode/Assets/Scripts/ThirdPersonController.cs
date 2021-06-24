@@ -8,12 +8,16 @@ public class ThirdPersonController : MonoBehaviour
     public CharacterController characterController;
     public Transform cam;
 
+    public float playerHitPoints = 100f;
+
     public float playerSpeed = 10f;
 
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
 
-
+    public Transform firePoint;
+    public Rigidbody bulletPrefab;
+    public float launchForce = 200;
 
 
     void Start()
@@ -25,6 +29,16 @@ public class ThirdPersonController : MonoBehaviour
     void Update()
     {
         Movement();
+        if(Input.GetButtonDown("Fire1"))
+        {
+            Shoot();
+        }
+    }
+
+    private void Shoot()
+    {
+        var bulletInstance = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        bulletInstance.AddForce(firePoint.forward * launchForce);
     }
 
     private void Movement()
@@ -41,6 +55,16 @@ public class ThirdPersonController : MonoBehaviour
 
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             characterController.Move(moveDir.normalized * playerSpeed * Time.deltaTime);
+        }
+    }
+
+    public void TakeLife(float damage)
+    {
+        playerHitPoints -= damage;
+        if (playerHitPoints <= 0)
+        {
+            Destroy(gameObject);
+            //Load next scene
         }
     }
 }
