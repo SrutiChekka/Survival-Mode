@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollectableBehavious : MonoBehaviour, IDamagable
+public class ExtraLife : MonoBehaviour, IDamagable
 {
+    private ThirdPersonController player;
+
     public float collectableHitPoints = 10f;
+    public float addToPlayerHealth = 100f;
 
     void Start()
     {
-        
+        player = FindObjectOfType<ThirdPersonController>();
     }
 
 
@@ -22,7 +25,7 @@ public class CollectableBehavious : MonoBehaviour, IDamagable
         collectableHitPoints -= damage;
         if (collectableHitPoints <= 0)
         {
-            //increase score
+            player.GainLife(addToPlayerHealth);
             Destroy(gameObject);
         }
     }

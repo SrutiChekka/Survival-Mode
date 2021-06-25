@@ -29,6 +29,9 @@ public class WaveManager : MonoBehaviour
 
     public GameObject enemy;
 
+    public GameObject extraLife;
+    public Transform extraLifePos;
+
 
     private void Start()
     {
@@ -52,6 +55,8 @@ public class WaveManager : MonoBehaviour
         }
 
         currentWave += 1;
+
+        Instantiate(extraLife, extraLifePos);
 
         enemiesInWave = enemyIncreaseFactor * currentWave;
         enemiestoSpawn = enemiesInWave;

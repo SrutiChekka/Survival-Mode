@@ -25,7 +25,7 @@ public class ThirdPersonController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         Movement();
@@ -39,6 +39,7 @@ public class ThirdPersonController : MonoBehaviour
     {
         var bulletInstance = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         bulletInstance.AddForce(firePoint.forward * launchForce);
+        //hitpoint - muzzle
     }
 
     private void Movement()
@@ -64,7 +65,11 @@ public class ThirdPersonController : MonoBehaviour
         if (playerHitPoints <= 0)
         {
             Destroy(gameObject);
-            //Load next scene
         }
+    }
+
+    public void GainLife(float life)
+    {
+        playerHitPoints += life;
     }
 }

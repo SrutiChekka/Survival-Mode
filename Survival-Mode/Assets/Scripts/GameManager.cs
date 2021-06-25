@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public Canvas gameOverCanvas;
+
     private WaveManager waveManager;
     private ThirdPersonController player;
 
@@ -13,12 +15,15 @@ public class GameManager : MonoBehaviour
     {
         waveManager = GetComponent<WaveManager>();
         player = FindObjectOfType<ThirdPersonController>();
+
+        gameOverCanvas.gameObject.SetActive(false);
+
     }
 
 
     private void Update()
     {
-        if (player)
+        if (Input.GetKeyDown(KeyCode.Return))
         {
             Time.timeScale = 1;
             waveManager.StartWave();
@@ -26,8 +31,9 @@ public class GameManager : MonoBehaviour
 
         if (!player)
         {
-            gameOver = true;
             Time.timeScale = 0;
+            gameOver = true;
+            gameOverCanvas.gameObject.SetActive(true);
         }
     }
 }
