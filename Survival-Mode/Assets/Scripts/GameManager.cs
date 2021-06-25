@@ -36,5 +36,10 @@ public class GameManager : MonoBehaviour
             gameOver = true;
             gameOverCanvas.gameObject.SetActive(true);
         }
+
+        else
+        {
+            return;
+        }
     }
 }
