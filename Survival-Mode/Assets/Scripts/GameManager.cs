@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
+            FindObjectOfType<WaveUI>().EnterMessage.gameObject.SetActive(false);
             Time.timeScale = 1;
             waveManager.StartWave();
         }
