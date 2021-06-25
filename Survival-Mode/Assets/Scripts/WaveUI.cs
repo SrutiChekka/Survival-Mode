@@ -9,9 +9,9 @@ public class WaveUI : MonoBehaviour
 
     public void UpdateUI(int _wave, int _enemies, int _kills)
     {
-        waveText.text = _wave.ToString();
-        enemyText.text = _enemies.ToString();
-        killsText.text = _kills.ToString();
+        waveText.text = "Wave no: " + _wave.ToString();
+        enemyText.text = "Enemies Remaining: " + _enemies.ToString();
+        killsText.text = "Kills: " + _kills.ToString();
     }
 
     public void HideUI()

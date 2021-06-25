@@ -18,6 +18,7 @@ public class EnemyBehavious : MonoBehaviour, IDamagable
     private void Start()
     {
         waveManager = FindObjectOfType<WaveManager>();
+        player = FindObjectOfType<ThirdPersonController>();
     }
 
     void Update()
