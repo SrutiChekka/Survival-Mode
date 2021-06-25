@@ -22,13 +22,15 @@ public class ThirdPersonController : MonoBehaviour
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     
     void Update()
     {
         Movement();
+        LookAtMouse();
         if(Input.GetButtonDown("Fire1"))
         {
             Shoot();
@@ -39,7 +41,6 @@ public class ThirdPersonController : MonoBehaviour
     {
         var bulletInstance = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         bulletInstance.AddForce(firePoint.forward * launchForce);
-        //hitpoint - muzzle
     }
 
     private void Movement()
@@ -57,6 +58,12 @@ public class ThirdPersonController : MonoBehaviour
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             characterController.Move(moveDir.normalized * playerSpeed * Time.deltaTime);
         }
+    }
+
+    public void LookAtMouse()
+    {
+        float yCamera = cam.rotation.eulerAngles.y;
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, yCamera, 0), turnSmoothTime * Time.deltaTime);
     }
 
     public void TakeLife(float damage)

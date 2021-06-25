@@ -49,7 +49,6 @@ public class EnemyBehavious : MonoBehaviour, IDamagable
         if(other.tag == "Player")
         {
             player.TakeLife(damagePlayer);
-            //FindObjectOfType<ThirdPersonController>().TakeLife(damagePlayer);
         }
     }
 }
