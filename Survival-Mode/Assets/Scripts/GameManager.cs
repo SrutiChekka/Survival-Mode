@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (player)
         {
             Time.timeScale = 1;
             waveManager.StartWave();
@@ -28,7 +28,6 @@ public class GameManager : MonoBehaviour
         {
             gameOver = true;
             Time.timeScale = 0;
-            Debug.Log("/---------Game Over-----------/");
         }
     }
 }
